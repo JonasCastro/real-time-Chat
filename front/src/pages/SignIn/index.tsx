@@ -21,7 +21,7 @@ const SignIn: React.FC<Props> = ({ history }: Props) => {
     if (response.ok) {
       const { id, name = '', avatar_url = '' }: User = await response.json();
       login({ id, name, avatar_url });
-      history.push('/chat');
+      history.push('/chatroom');
     } else {
       setOpenAlert(true);
     }

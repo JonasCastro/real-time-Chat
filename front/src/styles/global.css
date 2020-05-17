@@ -6,11 +6,12 @@
   box-sizing: border-box;
 }
 body {
-  background: DodgerBlue;
+  background: #fff;
 }
 *,
 input,
-button {
+button,
+textarea {
   font: 15px 'Roboto', sans-serif;
 }
 ul {
@@ -38,4 +39,12 @@ button {
 
 .button:hover {
   filter: brightness(90%);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #aaa;
 }
