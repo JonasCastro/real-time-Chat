@@ -3,15 +3,10 @@ import React, { useRef, useState, useEffect } from 'react';
 import { FiPower } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import { Container, Header, Content, Form, User, ButtonLogout, Input } from './styles';
-import { logout } from '../../../../services/auth';
+import { logout, getUser } from '../../../../services/auth';
 import Message from '../Message';
 import Participant from '../Participant';
 
-const user = {
-  id: 55038230,
-  avatar_url: 'https://avatars1.githubusercontent.com/u/55038230?v=4',
-  name: 'Samila Castro',
-};
 interface MessageUser {
   user_id: number;
   value: string;
@@ -23,6 +18,7 @@ const ContainerRight: React.FC = () => {
   const content = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<MessageUser[]>();
   const [newMessage, setNewMessage] = useState('');
+  const user = getUser();
 
   useEffect(() => {
     setMessages(messagesExemple);

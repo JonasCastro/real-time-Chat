@@ -5,7 +5,7 @@ interface User {
   avatar_url: string;
 }
 
-export const getUser = (): User | null => {
+export const getUser = (): User => {
   const user = localStorage.getItem(USER_KEY);
   return user ? JSON.parse(user) : null;
 };
