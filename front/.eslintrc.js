@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -27,12 +27,20 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     ],
-    'global-require': 'off',
-    'object-curly-newline': ['error', { multiline: true }],
-
-    'import/prefer-default-export': 'off',
-    'no-unused-expressions': ['error', { allowTaggedTemplates: true }],
+    // singleline: 'forbid',
+    // 'global-require': 'off',
+    'react/jsx-curly-newline': 'off',
+    'object-curly-newline': [
+      'error',
+      {
+        ObjectExpression: { multiline: true, minProperties: 2 },
+      },
+    ],
+    // 'object-curly-newline': ['error', 'never'],
+    // 'import/prefer-default-export': 'off',
+    // 'no-unused-expressions': ['error', { allowTaggedTemplates: true }],
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
 };
