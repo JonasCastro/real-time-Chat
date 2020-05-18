@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// eslint-disable-next-line no-unused-vars
 import { RouteComponentProps } from 'react-router-dom';
 import { Title, Container, Paper, Input, Alert, Closebtn } from './styles';
 import { login } from '../../services/auth';
@@ -20,7 +19,11 @@ const SignIn: React.FC<Props> = ({ history }: Props) => {
     const response = await fetch(`https://api.github.com/users/${username}`);
     if (response.ok) {
       const { id, name = '', avatar_url = '' }: User = await response.json();
-      login({ id, name, avatar_url });
+      login({
+        id,
+        name,
+        avatar_url,
+      });
       history.push('/chatroom');
     } else {
       setOpenAlert(true);
