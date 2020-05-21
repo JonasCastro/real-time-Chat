@@ -2,25 +2,21 @@ import React from 'react';
 
 import { BoxMessage, Text, DateMessage } from './styles';
 import Participant from '../Participant';
+import { getUser } from '../../../../services/auth';
+import { IMessage } from '../../../../interface/Message';
 
-interface MessageUser {
-  user_id: number;
-  value: string;
-}
 interface Props {
-  messageUser: MessageUser;
+  messageUser: IMessage;
 }
-const user = {
-  id: 2,
-  avatar_url: 'https://avatars1.githubusercontent.com/u/55038230?v=4',
-  name: 'Samila Castro',
+const Message: React.FC<Props> = ({ messageUser }: Props) => {
+  const user = getUser();
+  return (
+    <BoxMessage isMe={user.id === messageUser.user_id}>
+      <Participant size={30} value={user} textColor="black" />
+      <Text>{messageUser.value}</Text>
+      <DateMessage>20/12/2020 12:30</DateMessage>
+    </BoxMessage>
+  );
 };
-const Message: React.FC<Props> = ({ messageUser }: Props) => (
-  <BoxMessage isMe={user.id === messageUser.user_id}>
-    <Participant size={30} value={user} textColor="black" />
-    <Text>{messageUser.value}</Text>
-    <DateMessage>20/12/2020 12:30</DateMessage>
-  </BoxMessage>
-);
 
 export default Message;

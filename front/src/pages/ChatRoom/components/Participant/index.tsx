@@ -1,14 +1,10 @@
 import React from 'react';
 
 import { Container, Avatar, Name } from './styles';
+import { IUser } from '../../../../interface/user';
 
-interface ParticipantUser {
-  id: number;
-  name: string;
-  avatar_url: string;
-}
 interface Props {
-  value: ParticipantUser;
+  value: IUser;
   textColor?: string;
   size?: number;
 }

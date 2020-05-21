@@ -40,5 +40,6 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
     'react/jsx-props-no-spreading': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
   },
 };

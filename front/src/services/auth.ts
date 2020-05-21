@@ -1,16 +1,13 @@
-export const USER_KEY = '@RealTimeChat-User';
-interface User {
-  id: number;
-  name: string;
-  avatar_url: string;
-}
+import { IUser } from '../interface/user';
 
-export const getUser = (): User => {
+export const USER_KEY = '@RealTimeChat-User';
+
+export const getUser = (): IUser => {
   const user = localStorage.getItem(USER_KEY);
   return user ? JSON.parse(user) : null;
 };
 export const isAuthenticated = () => localStorage.getItem(USER_KEY) !== null;
-export const login = (user: User) => {
+export const login = (user: IUser) => {
   localStorage.setItem(USER_KEY, JSON.stringify(user));
 };
 export const logout = () => {

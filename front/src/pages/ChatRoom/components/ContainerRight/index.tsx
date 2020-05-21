@@ -6,17 +6,14 @@ import { Container, Header, Content, Form, User, ButtonLogout, Input } from './s
 import { logout, getUser } from '../../../../services/auth';
 import Message from '../Message';
 import Participant from '../Participant';
+import { IMessage } from '../../../../interface/Message';
 
-interface MessageUser {
-  user_id: number;
-  value: string;
-}
-const messagesExemple: MessageUser[] = [];
+const messagesExemple: IMessage[] = [];
 
 const ContainerRight: React.FC = () => {
   const history = useHistory();
   const content = useRef<HTMLDivElement>(null);
-  const [messages, setMessages] = useState<MessageUser[]>();
+  const [messages, setMessages] = useState<IMessage[]>();
   const [newMessage, setNewMessage] = useState('');
   const user = getUser();
 
@@ -26,10 +23,10 @@ const ContainerRight: React.FC = () => {
 
   function sendMessage() {
     if (messages) {
-      const messageUser: MessageUser[] = [
+      const messageUser: IMessage[] = [
         ...messages,
         {
-          user_id: 1,
+          user_id: user.id,
           value: newMessage,
         },
       ];
@@ -37,7 +34,7 @@ const ContainerRight: React.FC = () => {
     } else {
       setMessages([
         {
-          user_id: 1,
+          user_id: user.id,
           value: newMessage,
         },
       ]);
