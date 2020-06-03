@@ -64,7 +64,7 @@ const ContainerRight: React.FC<Props> = ({ socket }: Props) => {
         <ButtonLogout
           type="button"
           onClick={() => {
-            if (socket) socket.emit('disconnect', { user });
+            if (socket) { socket.emit('logout', { user }); socket.emit('disconnect') }
             history.push('/');
             logout();
           }}

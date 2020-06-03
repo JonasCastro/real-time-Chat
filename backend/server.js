@@ -28,11 +28,18 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("newMessages", messages);
   });
 
-  socket.on("disconnect", (data) => {
-    users = users.filter(function (elem) {
-      return elem.id !== data.id;
-    });
+  socket.on("logout", (data) => {
+
+    var index = users.map(function (e) { return e.id; }).indexOf(data.user.id);
+
+    if (index > -1) {
+      users.splice(index, 1);
+    }
+    users.map((e) => console.log(e));
+
     socket.broadcast.emit("newParticipant", users);
+  });
+  socket.on("disconnect", (data) => {
   });
 });
 
