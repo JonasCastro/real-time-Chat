@@ -1,4 +1,6 @@
+import { IUser } from './user';
+
 export interface IMessage {
-  user_id: number;
+  user: IUser;
   value: string;
 }

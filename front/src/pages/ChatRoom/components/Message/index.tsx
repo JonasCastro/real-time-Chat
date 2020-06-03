@@ -11,10 +11,10 @@ interface Props {
 const Message: React.FC<Props> = ({ messageUser }: Props) => {
   const user = getUser();
   return (
-    <BoxMessage isMe={user.id === messageUser.user_id}>
-      <Participant size={30} value={user} textColor="black" />
+    <BoxMessage isMe={user.id === messageUser.user.id}>
+      <Participant size={30} value={messageUser.user} textColor="black" />
       <Text>{messageUser.value}</Text>
-      <DateMessage>20/12/2020 12:30</DateMessage>
+      <DateMessage>{new Date().toLocaleString()}</DateMessage>
     </BoxMessage>
   );
 };

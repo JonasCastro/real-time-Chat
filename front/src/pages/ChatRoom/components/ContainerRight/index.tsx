@@ -8,9 +8,10 @@ import Message from '../Message';
 import Participant from '../Participant';
 import { IMessage } from '../../../../interface/Message';
 
-const messagesExemple: IMessage[] = [];
-
-const ContainerRight: React.FC = () => {
+interface Props {
+  socket: SocketIOClient.Socket | undefined;
+}
+const ContainerRight: React.FC<Props> = ({ socket }: Props) => {
   const history = useHistory();
   const content = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<IMessage[]>();
@@ -18,15 +19,20 @@ const ContainerRight: React.FC = () => {
   const user = getUser();
 
   useEffect(() => {
-    setMessages(messagesExemple);
-  }, []);
+    if (socket) {
+      socket.on('newMessages', (newMessages: IMessage[]) => {
+        setMessages(newMessages);
+      });
+
+    }
+  }, [socket]);
 
   function sendMessage() {
     if (messages) {
       const messageUser: IMessage[] = [
         ...messages,
         {
-          user_id: user.id,
+          user,
           value: newMessage,
         },
       ];
@@ -34,7 +40,7 @@ const ContainerRight: React.FC = () => {
     } else {
       setMessages([
         {
-          user_id: user.id,
+          user,
           value: newMessage,
         },
       ]);
@@ -42,6 +48,11 @@ const ContainerRight: React.FC = () => {
     if (content && content.current) {
       content.current.scrollTo(0, content.current.scrollHeight);
     }
+    if (socket)
+      socket.emit('sendMessage', {
+        user,
+        value: newMessage,
+      });
     setNewMessage('');
   }
   return (
@@ -53,6 +64,7 @@ const ContainerRight: React.FC = () => {
         <ButtonLogout
           type="button"
           onClick={() => {
+            if (socket) socket.emit('disconnect', { user });
             history.push('/');
             logout();
           }}
