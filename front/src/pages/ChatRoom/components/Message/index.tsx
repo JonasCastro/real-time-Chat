@@ -14,7 +14,7 @@ const Message: React.FC<Props> = ({ messageUser }: Props) => {
     <BoxMessage isMe={user.id === messageUser.user.id}>
       <Participant size={30} value={messageUser.user} textColor="black" />
       <Text>{messageUser.value}</Text>
-      <DateMessage>{new Date().toLocaleString()}</DateMessage>
+      <DateMessage>{messageUser.date}</DateMessage>
     </BoxMessage>
   );
 };

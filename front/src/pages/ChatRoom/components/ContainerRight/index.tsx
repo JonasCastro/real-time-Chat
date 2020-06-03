@@ -34,6 +34,7 @@ const ContainerRight: React.FC<Props> = ({ socket }: Props) => {
         {
           user,
           value: newMessage,
+          date: new Date().toLocaleString()
         },
       ];
       setMessages(messageUser);
@@ -42,6 +43,7 @@ const ContainerRight: React.FC<Props> = ({ socket }: Props) => {
         {
           user,
           value: newMessage,
+          date: new Date().toLocaleString()
         },
       ]);
     }
@@ -52,6 +54,7 @@ const ContainerRight: React.FC<Props> = ({ socket }: Props) => {
       socket.emit('sendMessage', {
         user,
         value: newMessage,
+        date: new Date().toLocaleString()
       });
     setNewMessage('');
   }
